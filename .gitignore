@@ -1,0 +1,12 @@
+Dependencies/fmod-studio-api
+Dependencies/ogre
+Dependencies/ogredeps
+Dependencies/ogre-sdk
+Dependencies/PhysX
+Dependencies/rapidxml
+Dependencies/sdl2
+Dependencies/sdl2bin
+Dependencies/b2
+Dependencies/boost
+Dependencies/cegui
+Build
