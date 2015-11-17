@@ -4,6 +4,9 @@
 #include "EPrerequisites.h"
 #include <exception>
 
+#pragma warning(push)
+#pragma warning(disable: 4244)
+
 namespace Echoes {
 	class ECHOES_EXPORT Color
 	{
@@ -39,19 +42,21 @@ namespace Echoes {
 			mRGB /= 255.0f;
 		}
 
-		const float& fr() { return mRGB(0); }
-		const float& fg() { return mRGB(1); }
-		const float& fb() { return mRGB(2); }
-		const float& fa() { return mRGB(3); }
+		const float fr() const { return mRGB(0); }
+		const float fg() const { return mRGB(1); }
+		const float fb() const { return mRGB(2); }
+		const float fa() const { return mRGB(3); }
 
-		const int& ir() { return mRGB(0) * 255; }
-		const int& ig() { return mRGB(1) * 255; }
-		const int& ib() { return mRGB(2) * 255; }
-		const int& ia() { return mRGB(3) * 255; }
+		const int ir() const { return mRGB(0) * 255; }
+		const int ig() const { return mRGB(1) * 255; }
+		const int ib() const { return mRGB(2) * 255; }
+		const int ia() const { return mRGB(3) * 255; }
 
 
 	protected:
 		Eigen::Vector4f	mRGB;
 	};
 }
+
+#pragma warning(pop)
 #endif // ECHOES_COLOR_H

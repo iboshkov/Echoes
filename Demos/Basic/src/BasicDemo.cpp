@@ -4,15 +4,23 @@
 #include <iostream>
 
 int main() {
-	Echoes::Core core;
-	Echoes::Color col(0xFF00FF);
-	core.initialize();
+	{
+		Echoes::Core core;
+		Echoes::Color col(0xFF00FF);
+		if (!core.initialize()) return -1;
 
-	while (true)
-		core.render(0);
+		Echoes::Window* wnd = core.createWindow("Echoes v0.1", 800, 600);
+		for (int i = 0; i < 10; i++){
+			wnd->close();
+			wnd->create();
+		}
+		while (wnd->isOpen())
+		{
+			core.render(0);
+		}
+		core.destroyWindow("Echoes v0.1");
 
-	core.destroy();
-
-
+		core.destroy();
+	}
 	return 0;
 }

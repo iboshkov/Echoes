@@ -10,7 +10,7 @@ namespace Ogre {
 
 namespace Echoes {
 #ifdef ECHOES_CORE_USE_SFML
-	typedef std::vector <Window*> WindowVector;
+	typedef std::vector<std::unique_ptr<Window>> WindowPtrVector;
 #endif
 
 	class ECHOES_EXPORT Core
@@ -24,10 +24,18 @@ namespace Echoes {
 		void render(const float& delta);
 		void destroy();
 
-	protected:
-		bool				mInitialized;
+		Window* createWindow(const String& name, int width, int height, bool fullscreen = false);
+		void destroyWindow(const String& name);
 
-		WindowVector						mWindows;
+		Ogre::Root* getOGRERoot();
+
+	protected:
+		void updateWindows();
+
+	protected:
+		bool								mInitialized;
+		std::vector<String>					mWindowsToDelete;
+		WindowPtrVector						mWindows;
 		std::unique_ptr<Ogre::Root>			mRoot;
 		std::unique_ptr<Ogre::RenderWindow>	mRootWindow;
 	};
