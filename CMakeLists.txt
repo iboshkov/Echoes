@@ -10,10 +10,14 @@ set(CMAKE_MODULE_PATH
 )
 
 SET(ECHOES_STATIC OFF CACHE BOOL "Build as libraries static or shared.")
+SET(ECHOES_PYTHON_BINDINGS ON CACHE BOOL "Build the Pyhthon bindings.")
 
 if (NOT ECHOES_STATIC)
 	add_definitions(-DECHOES_DLL)
 endif()
 
 add_subdirectory(./Core Core)
+if (${ECHOES_PYTHON_BINDINGS})
+add_subdirectory(./CorePy CorePy)
+endif()
 add_subdirectory(./Demos Demos)
